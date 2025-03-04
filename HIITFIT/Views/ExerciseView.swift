@@ -8,20 +8,22 @@ import AVKit
 
 struct ExerciseView: View {
     @Binding var selectedTab: Int
-    @Binding var history: HistoryStore
+    @EnvironmentObject var history: HistoryStore 
     let index: Int
-    @State private var rating = 0
+
     @State private var showHistory = false
     @State private var showSuccess = false
- 
+    @State private var timerDone = false
+    @State private var showTimer = false
 
     var lastExercise: Bool {
         index + 1 == Exercise.exercises.count
     }
-    
-    var exercise: Exercise { Exercise.exercises[index] }
-    @State private var timerDone = false
-    @State private var showTimer = false
+
+    // ✅ Fixed `exercise` scope issue
+    var exercise: Exercise {
+        Exercise.exercises[index] // Ensure `Exercise.swift` is included in your project
+    }
 
     var startButton: some View {
         Button("Start Exercise") {
@@ -31,11 +33,12 @@ struct ExerciseView: View {
 
     var doneButton: some View {
         Button("Done") {
-            history.addDoneExercise(Exercise.exercises[index].exerciseName)
+            history.addDoneExercise(exercise.exerciseName)
             timerDone = false
             showTimer.toggle()
-            if lastExercise { showSuccess.toggle() }
-            else {
+            if lastExercise {
+                showSuccess.toggle()
+            } else {
                 selectedTab += 1
             }
         }
@@ -44,11 +47,8 @@ struct ExerciseView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
-                HeaderView(
-                    selectedTab: $selectedTab,
-                    titleText: exercise.exerciseName
-                )
-                
+                HeaderView(selectedTab: $selectedTab, titleText: exercise.exerciseName)
+
                 if let url = Bundle.main.url(forResource: exercise.videoName, withExtension: "mp4") {
                     VideoPlayer(player: AVPlayer(url: url))
                         .frame(height: geometry.size.height * 0.45)
@@ -56,7 +56,7 @@ struct ExerciseView: View {
                     Text("Couldn't find \(exercise.videoName).mp4")
                         .foregroundColor(.red)
                 }
-                
+
                 HStack(spacing: 150) {
                     startButton
                     doneButton
@@ -68,27 +68,30 @@ struct ExerciseView: View {
                 }
                 .font(.title3)
                 .padding()
-                
+
                 if showTimer {
                     TimerView(timerDone: $timerDone, size: geometry.size.height * 0.07)
                 }
-                
+
                 Spacer()
-                
-                RatingView(rating: $rating)
+
+                RatingView(exerciseIndex: index)
                     .padding()
-                
+
                 Button("History") {
                     showHistory.toggle()
                 }
                 .sheet(isPresented: $showHistory) {
-                    HistoryView(showHistory: $showHistory, history: $history)
+                    HistoryView(showHistory: $showHistory)
+                        .environmentObject(history)
                 }
             }
             .padding(.bottom)
         }
     }
 }
+
+
 
 //#Preview {
 //    ExerciseView(selectedTab: .constant(0), index: 0)

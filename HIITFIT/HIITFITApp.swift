@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct HIITFITApp: App {
+    @StateObject private var history = HistoryStore()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(history)
         }
     }
 }

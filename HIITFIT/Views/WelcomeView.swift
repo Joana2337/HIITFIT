@@ -1,24 +1,24 @@
 
 //  WelcomeView.swift
 //  fitness track (chapt 2)
-
 import SwiftUI
 
 struct WelcomeView: View {
     @Binding var selectedTab: Int
-    @Binding var history : HistoryStore
+    @EnvironmentObject var history: HistoryStore  // ✅ Correct usage
     @State private var showHistory = false
+
     var body: some View {
         VStack {
             HeaderView(selectedTab: $selectedTab, titleText: "Welcome")
-            
+
             Spacer()
-            
+
             HStack(alignment: .bottom) {
                 VStack(alignment: .leading) {
                     Text("Get fit")
                         .font(.largeTitle)
-                    Text("with high intensity interval training")
+                    Text("with high-intensity interval training")
                         .font(.headline)
                 }
                 Image("step-up")
@@ -28,7 +28,6 @@ struct WelcomeView: View {
                     .clipShape(Circle())
             }
 
-      
             Button(action: { selectedTab = 0 }) {
                 Label("Get Started", systemImage: "arrow.right.circle")
             }
@@ -40,16 +39,18 @@ struct WelcomeView: View {
             )
 
             Spacer()
-            
-            Button("History"){
+
+            Button("History") {
                 showHistory.toggle()
             }
-            .sheet(isPresented: $showHistory){
-                HistoryView(showHistory: $showHistory, history: $history)
+            .sheet(isPresented: $showHistory) {
+                HistoryView(showHistory: $showHistory)  
             }
         }
     }
 }
+
+
 //
 //#Preview {
 //    WelcomeView(selectedTab: .constant(9))

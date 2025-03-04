@@ -1,4 +1,3 @@
-
 import Foundation
 
 struct ExerciseDay: Identifiable {
@@ -7,18 +6,30 @@ struct ExerciseDay: Identifiable {
     var exercises: [String] = []
 }
 
-struct HistoryStore {
-    var exerciseDays: [ExerciseDay] = []
+class HistoryStore: ObservableObject {
+    @Published var exerciseDays: [ExerciseDay] = []
+    @Published var exerciseHistory: [String] = [] 
 
-    mutating func addDoneExercise(_ exerciseName: String) {
+    init() {
+        #if DEBUG
+        print("Initializing HistoryStore")
+        #endif
+    }
+
+    func addDoneExercise(_ exerciseName: String) {
+        exerciseHistory.append(exerciseName)
+
         let today = Date()
-        if let index = exerciseDays.firstIndex(where: { Calendar.current.isDate($0.date, inSameDayAs: today) }) {
-            exerciseDays[index].exercises.append(exerciseName)
+
+        if let firstDate = exerciseDays.first?.date,
+           Calendar.current.isDate(today, inSameDayAs: firstDate) {
+            exerciseDays[0].exercises.append(exerciseName)
         } else {
             let newDay = ExerciseDay(date: today, exercises: [exerciseName])
             exerciseDays.append(newDay)
         }
+
+        print("History: ", exerciseDays)
     }
 }
-
 

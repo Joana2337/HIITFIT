@@ -29,9 +29,22 @@
 		84DF68342D5D89F80028F5ED /* HIITFITUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HIITFITUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		846704C42D768353004556CE /* Exceptions for "HIITFIT" folder in "HIITFIT" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 84DF68182D5D89F70028F5ED /* HIITFIT */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		84DF681B2D5D89F70028F5ED /* HIITFIT */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				846704C42D768353004556CE /* Exceptions for "HIITFIT" folder in "HIITFIT" target */,
+			);
 			path = HIITFIT;
 			sourceTree = "<group>";
 		};
@@ -394,6 +407,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"HIITFIT/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HIITFIT/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -431,6 +445,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"HIITFIT/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HIITFIT/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

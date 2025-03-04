@@ -6,14 +6,14 @@ import SwiftUI
 
 struct HistoryView: View {
     @Binding var showHistory: Bool
-    @Binding var history: HistoryStore
+    @EnvironmentObject var history: HistoryStore 
     @State private var selectedTab = 9
 
     var body: some View {
         ZStack {
             VStack {
                 HStack {
-                    Spacer()  // This pushes the button to the right
+                    Spacer() 
                     Button(action: { showHistory.toggle() }) {
                         Image(systemName: "xmark.circle")
                     }
@@ -41,6 +41,6 @@ struct HistoryView: View {
 }
 
 //#Preview {
-//    HistoryView(showHistory: .constant(true))
-//        .environmentObject(HistoryStore())
+////HistoryView(showHistory: .constant(true))
+//       // .environmentObject(HistoryStore())
 //}
