@@ -11,9 +11,9 @@ HIITFIT is a simple, effective High-Intensity Interval Training (HIIT) workout c
 - 📱 Mobile-Friendly Design
 
 ## Technologies Used
-- HTML5
-- CSS3
-- JavaScript (Vanilla)
+- Swift 
+- 
+- 
 
 ## Project Structure
 ```
