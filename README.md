@@ -55,7 +55,7 @@ Want to contribute? Great! To fix a bug or add a feature, follow these steps:
 6. Create a Pull Request
 
 ## License
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source.
 
 ## Author
 - Created by [Joana2337](https://github.com/Joana2337)
